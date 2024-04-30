@@ -1,0 +1,107 @@
+function getLengths(arr) {
+    return arr.map(subArr => subArr.length);
+}
+console.log(getLengths([[1, 2], [3, 4, 5], [], [6]])); // Output: [2, 3, 0, 1]
+
+function toggleArrayElements(arr) {
+    return arr.map(item => typeof item === 'number' ? item + 1 : item.toUpperCase());
+}
+console.log(toggleArrayElements([1, 'apple', 3, 'banana'])); // Output: [2, 'APPLE', 4, 'BANANA']
+
+function validatePIN(pin) {
+    return /^(\d{4}|\d{6})$/.test(pin);
+}
+console.log(validatePIN("1234")); // Output: true
+console.log(validatePIN("12345")); // Output: false
+console.log(validatePIN("123456")); // Output: true
+
+function findDifference(arr1, arr2) {
+    return arr1.filter(item => !arr2.includes(item));
+}
+console.log(findDifference([1, 2, 3], [1, 3, 4])); // Output: [2]
+
+function calculateAge(birthYear) {
+    const currentYear = new Date().getFullYear();
+    return currentYear - birthYear;
+}
+console.log(calculateAge(1990)); // Output: 33 (as of 2023)
+
+function countTrue(arr) {
+    return arr.filter(Boolean).length;
+}
+console.log(countTrue([true, false, false, true, false])); // Output: 2
+
+function mergeAndSortArrays(arr1, arr2) {
+    return arr1.concat(arr2).sort((a, b) => a - b);
+}
+console.log(mergeAndSortArrays([3, 1, 4], [2, 5, 8])); // Output: [1, 2, 3, 4, 5, 8]
+
+function endsWith(str, substring) {
+    return str.endsWith(substring);
+}
+console.log(endsWith("JavaScript", "Script")); // Output: true
+console.log(endsWith("JavaScript", "script")); // Output: false
+
+function replaceAllOccurrences(text, search, replace) {
+    return text.split(search).join(replace);
+}
+console.log(replaceAllOccurrences("Hello world, hello moon", "hello", "hi")); // Output: "Hello world, hi moon"
+
+function sumOfPositive(numbers) {
+    return numbers.filter(num => num > 0).reduce((acc, num) => acc + num, 0);
+}
+console.log(sumOfPositive([-1, 2, 3, -4, 5])); // Output: 10
+
+function rotateArray(arr, k) {
+    for (let i = 0; i < k; i++) {
+        arr.unshift(arr.pop());
+    }
+    return arr;
+}
+console.log(rotateArray([1, 2, 3, 4, 5], 3)); // Output: [3, 4, 5, 1, 2]
+
+function isArraySymmetric(arr) {
+    for (let i = 0; i < arr.length / 2; i++) {
+        if (arr[i] !== arr[arr.length - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+console.log(isArraySymmetric([1, 2, 3, 2, 1])); // Output: true
+console.log(isArraySymmetric([1, 2, 3, 4, 5])); // Output: false
+
+function objectToPairs(obj) {
+    return Object.entries(obj);
+}
+console.log(objectToPairs({ name: 'Alice', age: 25 })); // Output: [['name', 'Alice'], ['age', 25]]
+
+function removeLessThan(arr, threshold) {
+    return arr.filter(item => item >= threshold);
+}
+console.log(removeLessThan([1, 2, 3, 4, 5, 6], 3)); // Output: [3, 4, 5, 6]
+
+function addProperty(objects, key, value) {
+    objects.forEach(obj => obj[key] = value);
+    return objects;
+}
+console.log(addProperty([{ name: 'Alice' }, { name: 'Bob' }], 'age', 25));
+// Output: [{ name: 'Alice', age: 25 }, { name: 'Bob', age: 25 }]
+
+function allTrue(values) {
+    return values.every(val => val === true);
+}
+console.log(allTrue([true, true, true])); // Output: true
+console.log(allTrue([true, false, true])); // Output: false
+
+function countWords(str) {
+    return str.split(/\s+/).filter(Boolean).length;
+}
+console.log(countWords("Hello world")); // Output: 2
+console.log(countWords(" Hello world ")); // Output: 2
+console.log(countWords("")); // Output: 0
+
+function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+console.log(randomBetween(1, 10)); // Output: Random integer between 1 and 10
