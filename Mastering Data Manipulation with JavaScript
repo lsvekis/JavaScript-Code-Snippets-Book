@@ -1,0 +1,156 @@
+function findSecondSmallest(arr) {
+    let smallest = Number.MAX_SAFE_INTEGER, secondSmallest = Number.MAX_SAFE_INTEGER;
+    for (let number of arr) {
+        if (number < smallest) {
+            secondSmallest = smallest;
+            smallest = number;
+        } else if (number < secondSmallest && number !== smallest) {
+            secondSmallest = number;
+        }
+    }
+    return secondSmallest === Number.MAX_SAFE_INTEGER ? null : secondSmallest;
+}
+console.log(findSecondSmallest([5, 2, 3, 4, 1])); // Output: 2
+
+function containsDuplicate(arr) {
+    const seen = new Set();
+    for (let num of arr) {
+        if (seen.has(num)) {
+            return true;
+        }
+        seen.add(num);
+    }
+    return false;
+}
+console.log(containsDuplicate([1, 2, 3, 4, 5])); // Output: false
+console.log(containsDuplicate([1, 2, 3, 4, 1])); // Output: true
+
+function rotateMatrix(matrix) {
+    const n = matrix.length;
+    const result = Array.from({ length: n }, () => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            result[j][n - 1 - i] = matrix[i][j];
+        }
+    }
+    return result;
+}
+console.log(rotateMatrix([[1, 2], [3, 4]]));
+// Output: [[3, 1], [4, 2]]
+
+function generateBooleanCombinations(n) {
+    const results = [];
+    const backtrack = (current) => {
+        if (current.length === n) {
+            results.push([...current]);
+            return;
+        }
+        current.push(true);
+        backtrack(current);
+        current.pop();
+        current.push(false);
+        backtrack(current);
+        current.pop();
+    };
+    backtrack([]);
+    return results;
+}
+console.log(generateBooleanCombinations(3));
+// Output: [[true, true, true], [true, true, false], ..., [false, false, false]]
+
+function arrayToObject(arr) {
+    return Object.fromEntries(arr);
+}
+console.log(arrayToObject([['a', 1], ['b', 2]])); // Output: { a: 1, b: 2 }
+
+function findAllPrimes(n) {
+    let primes = [];
+    let isPrime = Array(n + 1).fill(true);
+    isPrime[0] = isPrime[1] = false;
+    for (let i = 2; i <= n; i++) {
+        if (isPrime[i]) {
+            primes.push(i);
+            for (let j = i * i; j <= n; j += i) {
+                isPrime[j] = false;
+            }
+        }
+    }
+    return primes;
+}
+console.log(findAllPrimes(10)); // Output: [2, 3, 5, 7]
+
+function capitalizeWordsArray(words) {
+    return words.map(word => word[0].toUpperCase() + word.substring(1).toLowerCase());
+}
+console.log(capitalizeWordsArray(['apple', 'banana', 'cherry'])); // Output: ['Apple', 'Banana', 'Cherry']
+
+function sumExcludingMinAndMax(arr) {
+    let min = Math.min(...arr);
+    let max = Math.max(...arr);
+    return arr.reduce((acc, num) => {
+        if (num !== min && num !== max) {
+            return acc + num;
+        }
+        return acc;
+    }, 0);
+}
+console.log(sumExcludingMinAndMax([1, 2, 3, 4, 5])); // Output: 9 (sum of 2, 3, 4)
+
+function areAnagrams(str1, str2) {
+    const normalize = str => str.toLowerCase().replace(/[\W_]+/g, '').split('').sort().join('');
+    return normalize(str1) === normalize(str2);
+}
+console.log(areAnagrams("listen", "silent")); // Output: true
+console.log(areAnagrams("hello", "world")); // Output: false
+
+function isMonotonic(arr) {
+    let increasing = true;
+    let decreasing = true;
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > arr[i - 1]) {
+            decreasing = false;
+        }
+        if (arr[i] < arr[i - 1]) {
+            increasing = false;
+        }
+    }
+    return increasing || decreasing;
+}
+console.log(isMonotonic([1, 2, 2, 3])); // Output: true
+console.log(isMonotonic([1, 3, 2])); // Output: false
+
+function getMiddle(s) {
+    let mid = Math.floor(s.length / 2);
+    return s.length % 2 === 0 ? s[mid - 1] + s[mid] : s[mid];
+}
+console.log(getMiddle("test")); // Output: "es"
+console.log(getMiddle("testing")); // Output: "t"
+
+function findNextPrime(num) {
+    function isPrime(n) {
+        for (let i = 2, s = Math.sqrt(n); i <= s; i++) {
+            if (n % i === 0) return false;
+        }
+        return n > 1;
+    }
+    while (!isPrime(++num)) { }
+    return num;
+}
+console.log(findNextPrime(12)); // Output: 13
+
+function totalSales(prices, quantities) {
+    return prices.reduce((total, price, index) => total + price * quantities[index], 0);
+}
+console.log(totalSales([2.50, 1.20], [5, 12])); // Output: 28.9
+
+function removeFalseyValues(arr) {
+    return arr.filter(Boolean);
+}
+console.log(removeFalseyValues([0, 1, false, 2, '', 3, 'a', NaN, 's', 34])); // Output: [1, 2, 3, 'a', 's', 34]
+
+function toggleCase(str) {
+    return str.split('').map(char => {
+        return char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+    }).join('');
+}
+console.log(toggleCase("Hello World")); // Output: "hELLO wORLD"
