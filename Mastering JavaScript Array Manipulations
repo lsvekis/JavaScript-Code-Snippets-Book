@@ -1,0 +1,167 @@
+function insertAt(array, index, element) {
+    let result = [];
+    for (let i = 0; i < array.length + 1; i++) {
+        if (i < index) {
+            result[i] = array[i];
+        } else if (i === index) {
+            result[i] = element;
+        } else {
+            result[i] = array[i - 1];
+        }
+    }
+    return result;
+}
+console.log(insertAt([1, 2, 4, 5], 2, 3)); // Output: [1, 2, 3, 4, 5]
+
+function elementsGreaterThanNeighbors(arr) {
+    let result = [];
+    for (let i = 1; i < arr.length - 1; i++) {
+        if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+console.log(elementsGreaterThanNeighbors([1, 2, 3, 4, 3])); // Output: [4]
+
+function concatenateUnique(arr1, arr2) {
+    let combined = [...arr1, ...arr2];
+    return combined.filter((value, index, self) => self.indexOf(value) === index);
+}
+console.log(concatenateUnique([1, 2, 3], [2, 3, 4])); // Output: [1, 2, 3, 4]
+
+function totalElements(nestedArr) {
+    let count = 0;
+    nestedArr.forEach(element => {
+        count += Array.isArray(element) ? totalElements(element) : 1;
+    });
+    return count;
+}
+console.log(totalElements([1, [2, 3], [4, [5, 6]]])); // Output: 6
+
+function generateRandomString(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+console.log(generateRandomString(8)); // Output: e.g., "aB3dE7F2"
+
+function allElementsIdentical(arr) {
+    return arr.every((val) => val === arr[0]);
+}
+console.log(allElementsIdentical([4, 4, 4, 4])); // Output: true
+console.log(allElementsIdentical([4, 4, 4, 2])); // Output: false
+
+function countVowels(str) {
+    const counts = { a: 0, e: 0, i: 0, o: 0, u: 0 };
+    for (const char of str.toLowerCase()) {
+        if (counts.hasOwnProperty(char)) {
+            counts[char]++;
+        }
+    }
+    return counts;
+}
+console.log(countVowels("Hello World")); // Output: { a: 0, e: 1, i: 0, o: 2, u: 0 }
+
+function swapPairs(arr) {
+    for (let i = 0; i < arr.length - 1; i += 2) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+    }
+    return arr;
+}
+console.log(swapPairs([1, 2, 3, 4])); // Output: [2, 1, 4, 3]
+
+function numberToWords(num) {
+    const units = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+    const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+    if (num < 20) {
+        return units[num];
+    } else if (num < 100) {
+        return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? ' ' + units[num % 10] : '');
+    } else {
+        return units[Math.floor(num / 100)] + ' hundred' + (num % 100 !== 0 ? ' and ' + numberToWords(num % 100) : '');
+    }
+}
+console.log(numberToWords(345)); // Output: "three hundred and forty five"
+
+function findMostFrequent(arr) {
+    const counts = {};
+    let maxCount = 0;
+    let mostFrequentItem = null;
+    arr.forEach(item => {
+        counts[item] = (counts[item] || 0) + 1;
+        if (counts[item] > maxCount) {
+            maxCount = counts[item];
+            mostFrequentItem = item;
+        }
+    });
+    return mostFrequentItem;
+}
+console.log(findMostFrequent(['apple', 'banana', 'apple', 'orange', 'banana', 'apple'])); // Output: 'apple'
+
+function replaceSpacesWithDashes(str) {
+    return str.replace(/\s+/g, '-');
+}
+console.log(replaceSpacesWithDashes("Hello world from JavaScript")); // Output: "Hello-world-from-JavaScript"
+
+function reverseWordsInPlace(sentence) {
+    return sentence.split(' ').reverse().join(' ');
+}
+console.log(reverseWordsInPlace("Hello world from JavaScript")); // Output: "JavaScript from world Hello"
+
+function isEvenOrOdd(num) {
+    return num % 2 === 0 ? 'Even' : 'Odd';
+}
+console.log(isEvenOrOdd(10)); // Output: 'Even'
+console.log(isEvenOrOdd(11)); // Output: 'Odd'
+
+function flattenArray(nestedArr) {
+    return nestedArr.reduce((acc, item) => acc.concat(Array.isArray(item) ? flattenArray(item) : item), []);
+}
+console.log(flattenArray([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
+
+function validatePassword(password) {
+    const hasEightChars = password.length >= 8;
+    const hasDigit = /\d/.test(password);
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasSpecialChar = /[\W_]/.test(password);
+    return hasEightChars && hasDigit && hasUpperCase && hasLowerCase && hasSpecialChar;
+}
+console.log(validatePassword("StrongPass1!")); // Output: true
+console.log(validatePassword("weak")); // Output: false
+
+function sumDigits(number) {
+    return number.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+}
+console.log(sumDigits(1234)); // Output: 10
+
+function isArithmeticProgression(arr) {
+    if (arr.length < 2) return true;
+    const difference = arr[1] - arr[0];
+    for (let i = 2; i < arr.length; i++) {
+        if (arr[i] - arr[i - 1] !== difference) {
+            return false;
+        }
+    }
+    return true;
+}
+console.log(isArithmeticProgression([3, 5, 7, 9])); // Output: true
+console.log(isArithmeticProgression([1, 2, 4, 8])); // Output: false
+
+function filterOutStrings(arr) {
+    return arr.filter(item => typeof item !== 'string');
+}
+console.log(filterOutStrings([1, 'hello', 3, 'world', 5])); // Output: [1, 3, 5]
+
+function rotateArray(arr, steps) {
+    const result = arr.slice();
+    for (let i = 0; i < steps; i++) {
+        result.unshift(result.pop());
+    }
+    return result;
+}
+console.log(rotateArray([1, 2, 3, 4, 5], 2)); // Output: [4, 5, 1, 2, 3]
