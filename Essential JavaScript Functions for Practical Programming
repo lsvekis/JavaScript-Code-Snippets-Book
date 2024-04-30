@@ -1,0 +1,127 @@
+function simpleCalculator(num1, num2, operation) {
+    switch (operation) {
+        case 'add':
+            return num1 + num2;
+        case 'subtract':
+            return num1 - num2;
+        case 'multiply':
+            return num1 * num2;
+        case 'divide':
+            return num2 !== 0 ? num1 / num2 : 'Cannot divide by zero';
+        default:
+            return 'Invalid operation';
+    }
+}
+console.log(simpleCalculator(10, 5, 'multiply')); // Output: 50
+console.log(simpleCalculator(10, 0, 'divide')); // Output: "Cannot divide by zero"
+
+function isPalindrome(str) {
+    const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const reversedStr = cleanStr.split('').reverse().join('');
+    return cleanStr === reversedStr;
+}
+console.log(isPalindrome("A man, a plan, a canal, Panama")); // Output: true
+console.log(isPalindrome("racecar")); // Output: true
+console.log(isPalindrome("hello")); // Output: false
+
+function removeDuplicates(arr) {
+    return arr.filter((value, index, self) => self.indexOf(value) === index);
+}
+console.log(removeDuplicates([1, 2, 3, 2, 4, 1])); // Output: [1, 2, 3, 4]
+
+function findIntersection(arr1, arr2) {
+    return arr1.filter(value => arr2.includes(value));
+}
+console.log(findIntersection([1, 2, 3, 4], [3, 4, 5, 6])); // Output: [3, 4]
+
+function capitalizeWords(sentence) {
+    return sentence.replace(/\b\w/g, match => match.toUpperCase());
+}
+console.log(capitalizeWords("hello world")); // Output: "Hello World"
+
+function factorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+console.log(factorial(5)); // Output: 120
+
+function reverseEachWord(sentence) {
+    return sentence.split(' ').map(word => word.split('').reverse().join('')).join(' ');
+}
+console.log(reverseEachWord("Hello World")); // Output: "olleH dlroW"
+
+function generateFibonacci(n) {
+    let fib = [0, 1];
+    for (let i = 2; i < n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+    return fib.slice(0, n);
+}
+console.log(generateFibonacci(5)); // Output: [0, 1, 1, 2, 3]
+
+function isPrime(num) {
+    if (num <= 1) return false;
+    if (num <= 3) return true;
+    if (num % 2 === 0 || num % 3 === 0) return false;
+    for (let i = 5; i * i <= num; i += 6) {
+        if (num % i === 0 || num % (i + 2) === 0) return false;
+    }
+    return true;
+}
+console.log(isPrime(11)); // Output: true
+console.log(isPrime(4)); // Output: false
+
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+console.log(celsiusToFahrenheit(0)); // Output: 32
+console.log(celsiusToFahrenheit(100)); // Output: 212
+
+function validateBrackets(str) {
+    const stack = [];
+    const pairs = { '(': ')', '{': '}', '[': ']' };
+    for (let char of str) {
+        if (pairs[char]) {
+            stack.push(char);
+        } else if (Object.values(pairs).includes(char)) {
+            const lastOpen = stack.pop();
+            if (pairs[lastOpen] !== char) {
+                return false;
+            }
+        }
+    }
+    return stack.length === 0;
+}
+console.log(validateBrackets("{[()]}")); // Output: true
+console.log(validateBrackets("{[(])}")); // Output: false
+
+function countCharacter(str, char) {
+    return str.split('').filter(c => c === char).length;
+}
+console.log(countCharacter("hello world", 'l')); // Output: 3
+
+function sumArray(arr) {
+    return arr.reduce((acc, curr) => acc + curr, 0);
+}
+console.log(sumArray([1, 2, 3, 4, 5])); // Output: 15
+
+function sortByLength(arr) {
+    return arr.sort((a, b) => a.length - b.length);
+}
+console.log(sortByLength(["apple", "banana", "grape", "kiwi"])); // Output: ["kiwi", "grape", "apple", "banana"]
+
+function removeElement(arr, element) {
+    return arr.filter(e => e !== element);
+}
+console.log(removeElement([3, 5, 3, 8], 3)); // Output: [5, 8]
+
+function digitize(n) {
+    return String(n).split('').map(Number).reverse();
+}
+console.log(digitize(348597)); // Output: [7, 9, 5, 8, 4, 3]
