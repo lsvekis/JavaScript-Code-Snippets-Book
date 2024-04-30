@@ -1,0 +1,133 @@
+function squareNumbers(numbers) {
+    return numbers.map(num => num * num);
+}
+console.log(squareNumbers([1, 2, 3, 4])); // Output: [1, 4, 9, 16]
+
+function canVote(age) {
+    return age >= 18;
+}
+console.log(canVote(21)); // Output: true
+console.log(canVote(17)); // Output: false
+
+function findLongestString(strings) {
+    let longest = '';
+    for (let str of strings) {
+        if (str.length > longest.length) {
+            longest = str;
+        }
+    }
+    return longest;
+}
+console.log(findLongestString(["this", "is", "a", "test", "sentence"])); // Output: "sentence"
+
+function removeWhitespaces(str) {
+    return str.replace(/\s+/g, '');
+}
+console.log(removeWhitespaces(" He llo Wo rld\t\n")); // Output: "HelloWorld"
+
+function calculateTotal(products) {
+    return products.reduce((total, product) => total + product.price, 0);
+}
+const products = [{ name: "Apple", price: 1.5 }, { name: "Orange", price: 2 }, { name: "Banana", price: 0.5 }];
+console.log(calculateTotal(products)); // Output: 4
+
+function areAllUnique(arr) {
+    let seen = new Set();
+    for (let value of arr) {
+        if (seen.has(value)) {
+            return false;
+        }
+        seen.add(value);
+    }
+    return true;
+}
+console.log(areAllUnique([1, 2, 3, 4, 5])); // Output: true
+console.log(areAllUnique([1, 2, 3, 4, 1])); // Output: false
+
+function convertToStrings(numbers) {
+    return numbers.map(String);
+}
+console.log(convertToStrings([10, 20, 30])); // Output: ['10', '20', '30']
+
+function indexOfFirstOccurrence(str, substring) {
+    return str.indexOf(substring);
+}
+console.log(indexOfFirstOccurrence("hello world", "world")); // Output: 6
+
+function toggleBoolean(bool) {
+    return !bool;
+}
+console.log(toggleBoolean(true)); // Output: false
+console.log(toggleBoolean(false)); // Output: true
+
+function countNegatives(arr) {
+    return arr.filter(num => num < 0).length;
+}
+console.log(countNegatives([1, -2, -3, 4, 0])); // Output: 2
+
+function removeFirstOccurrence(arr, element) {
+    const index = arr.indexOf(element);
+    if (index !== -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+}
+console.log(removeFirstOccurrence([3, 5, 3, 8], 3)); // Output: [5, 3, 8]
+
+function repeatString(str, n) {
+    return str.repeat(n);
+}
+console.log(repeatString("abc", 3)); // Output: "abcabcabc"
+
+function getRandomElement(arr) {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+}
+console.log(getRandomElement([1, 2, 3, 4, 5])); // Output: (random element from array)
+
+function convertMinutes(mins) {
+    const hours = Math.floor(mins / 60);
+    const minutes = mins % 60;
+    return `${hours} hours and ${minutes} minutes`;
+}
+console.log(convertMinutes(90)); // Output: "1 hours and 30 minutes"
+
+function isPalindromeCaseInsensitive(str) {
+    const formattedStr = str.toLowerCase();
+    const reversedStr = formattedStr.split('').reverse().join('');
+    return formattedStr === reversedStr;
+}
+console.log(isPalindromeCaseInsensitive("Racecar")); // Output: true
+console.log(isPalindromeCaseInsensitive("hello")); // Output: false
+
+function sumOddFibonacciNumbers(max) {
+    let sum = 0;
+    let a = 1, b = 1;
+    while (a <= max) {
+        if (a % 2 !== 0) {
+            sum += a;
+        }
+        let temp = b;
+        b = a + b;
+        a = temp;
+    }
+    return sum;
+}
+console.log(sumOddFibonacciNumbers(10)); // Output: 10 (1 + 1 + 3 + 5)
+
+function capitalizeWords(str) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+console.log(capitalizeWords("hello world")); // Output: "Hello World"
+
+function maxProduct(arr) {
+    let maxProduct = 0;
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            maxProduct = Math.max(maxProduct, arr[i] * arr[j]);
+        }
+    }
+    return maxProduct;
+}
+console.log(maxProduct([5, -2, 1, -9, -7, 2, 6])); // Output: 63 (-9 * -7)
+
