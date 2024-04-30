@@ -1,0 +1,132 @@
+function calculateSimpleInterest(principal, rate, time) {
+    return principal * rate * time / 100;
+}
+console.log(calculateSimpleInterest(1000, 5, 3)); // Output: 150
+
+function countVowels(str) {
+    let count = str.match(/[aeiou]/gi);
+    return count ? count.length : 0;
+}
+console.log(countVowels("hello world")); // Output: 3
+function sumArray(numbers) {
+    return numbers.reduce((acc, cur) => acc + cur, 0);
+}
+console.log(sumArray([1, 2, 3, 4, 5])); // Output: 15
+function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+console.log(isPrime(7)); // Output: true
+console.log(isPrime(12)); // Output: false
+function fibonacci(n) {
+    let sequence = [0, 1];
+    for (let i = 2; i < n; i++) {
+        sequence.push(sequence[i - 1] + sequence[i - 2]);
+    }
+    return sequence;
+}
+console.log(fibonacci(7)); // Output: [0, 1, 1, 2, 3, 5, 8]
+function isPalindrome(str) {
+    const reversedStr = str.split('').reverse().join('');
+    return str === reversedStr;
+}
+console.log(isPalindrome("radar")); // Output: true
+console.log(isPalindrome("hello")); // Output: false
+function reverseArray(arr) {
+    let start = 0;
+    let end = arr.length - 1;
+    while (start < end) {
+        [arr[start], arr[end]] = [arr[end], arr[start]];
+        start++;
+        end--;
+    }
+    return arr;
+}
+console.log(reverseArray([1, 2, 3, 4, 5])); // Output: [5, 4, 3, 2, 1]
+function factorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+console.log(factorial(5)); // Output: 120
+function countCharacter(str, char) {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === char) {
+            count++;
+        }
+    }
+    return count;
+}
+console.log(countCharacter("hello", "l")); // Output: 2
+function celsiusToFahrenheit(celsius) {
+    return celsius * 9 / 5 + 32;
+}
+console.log(celsiusToFahrenheit(0)); // Output: 32
+console.log(celsiusToFahrenheit(100)); // Output: 212
+function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+console.log(randomBetween(1, 10)); // Output: Random number between 1 and 10
+function sortNumbers(arr) {
+    return arr.sort((a, b) => a - b);
+}
+console.log(sortNumbers([5, 3, 8, 1, 2])); // Output: [1, 2, 3, 5, 8]
+function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+console.log(arraysEqual([1, 2, 3], [1, 2, 3])); // Output: true
+console.log(arraysEqual([1, 2, 3], [3, 2, 1])); // Output: false
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+}
+console.log(isValidEmail("example@test.com")); // Output: true
+console.log(isValidEmail("example.com")); // Output: false
+function sumDigits(number) {
+    let sum = 0;
+    let digits = number.toString().split('');
+    for (let digit of digits) {
+        sum += parseInt(digit);
+    }
+    return sum;
+}
+console.log(sumDigits(1234)); // Output: 10
+function charFrequency(str) {
+    let freq = {};
+    for (let char of str) {
+        if (freq[char]) {
+            freq[char]++;
+        } else {
+            freq[char] = 1;
+        }
+    }
+    return freq;
+}
+console.log(charFrequency("hello world"));
+// Output: { h: 1, e: 1, l: 3, o: 2, ' ': 1, w: 1, r: 1, d: 1 }
+function swapValues(a, b) {
+    [a, b] = [b, a];
+    return [a, b];
+}
+console.log(swapValues(3, 7)); // Output: [7, 3]
