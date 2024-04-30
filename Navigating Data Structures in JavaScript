@@ -1,0 +1,141 @@
+function isArraySorted(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+console.log(isArraySorted([1, 2, 3, 4, 5])); // Output: true
+console.log(isArraySorted([1, 3, 2, 4, 5])); // Output: false
+
+function findMax(arr) {
+    return Math.max(...arr);
+}
+console.log(findMax([1, 2, 3, 4, 5])); // Output: 5
+console.log(findMax([-1, -2, -3, -4])); // Output: -1
+
+function reverseOnlyLetters(str) {
+    const isLetter = c => c.toLowerCase() !== c.toUpperCase();
+    let letters = str.split('').filter(isLetter).reverse();
+    return str.split('').map(char => isLetter(char) ? letters.shift() : char).join('');
+}
+console.log(reverseOnlyLetters("a,b$c")); // Output: "c,b$a"
+
+function convertSeconds(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${hours}h:${minutes}m:${remainingSeconds}s`;
+}
+console.log(convertSeconds(4000)); // Output: "1h:6m:40s"
+
+function findMin(arr) {
+    return Math.min(...arr);
+}
+console.log(findMin([5, 1, 8, -3, 7])); // Output: -3
+
+function countEvenOdd(numbers) {
+    let count = { even: 0, odd: 0 };
+    numbers.forEach(num => {
+        count[num % 2 === 0 ? 'even' : 'odd']++;
+    });
+    return count;
+}
+console.log(countEvenOdd([1, 2, 3, 4, 5, 6])); // Output: {even: 3, odd: 3}
+
+function allIdentical(elements) {
+    return new Set(elements).size === 1;
+}
+console.log(allIdentical([7, 7, 7, 7])); // Output: true
+console.log(allIdentical([7, 7, 8, 7])); // Output: false
+
+function reverseArrayInPlace(arr) {
+    let temp;
+    for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr;
+}
+console.log(reverseArrayInPlace([1, 2, 3, 4, 5])); // Output: [5, 4, 3, 2, 1]
+
+function containsOnlyDigits(str) {
+    return /^\d+$/.test(str);
+}
+console.log(containsOnlyDigits("12345")); // Output: true
+console.log(containsOnlyDigits("12345abc")); // Output: false
+
+function listSquares(n) {
+    let squares = [];
+    for (let i = 1; i <= n; i++) {
+        squares.push(i * i);
+    }
+    return squares;
+}
+console.log(listSquares(5)); // Output: [1, 4, 9, 16, 25]
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+console.log(validateEmail("example@test.com")); // Output: true
+console.log(validateEmail("example.com")); // Output: false
+
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+console.log(shuffleArray([1, 2, 3, 4, 5])); // Output: [3, 1, 4, 5, 2] (example output)
+
+function findMostFrequent(arr) {
+    let counts = {};
+    let maxCount = 0;
+    let mostFrequent;
+    arr.forEach(item => {
+        counts[item] = (counts[item] || 0) + 1;
+        if (counts[item] > maxCount) {
+            maxCount = counts[item];
+            mostFrequent = item;
+        }
+    });
+    return mostFrequent;
+}
+console.log(findMostFrequent([1, 3, 3, 3, 2, 4, 1, 1, 1, 1, 3])); // Output: 1
+
+function findAllIndexes(arr, target) {
+    const indexes = [];
+    arr.forEach((element, index) => {
+        if (element === target) {
+            indexes.push(index);
+        }
+    });
+    return indexes;
+}
+console.log(findAllIndexes([1, 2, 3, 2, 4, 2], 2)); // Output: [1, 3, 5]
+
+function isPowerOfTwo(num) {
+    return num > 0 && (num & (num - 1)) === 0;
+}
+console.log(isPowerOfTwo(8)); // Output: true
+console.log(isPowerOfTwo(5)); // Output: false
+
+function countVowels(str) {
+    const vowels = 'aeiouAEIOU';
+    return [...str].filter(char => vowels.includes(char)).length;
+}
+console.log(countVowels("Hello World")); // Output: 3
+
+function sumIf(arr, condition) {
+    return arr.reduce((acc, num) => {
+        if (condition(num)) {
+            return acc + num;
+        }
+        return acc;
+    }, 0);
+}
+console.log(sumIf([1, 2, 3, 4, 5], x => x % 2 === 0)); // Output: 6 (2 + 4)
