@@ -1,0 +1,125 @@
+// Convert Array of Numbers to Cumulative Sum Array
+function cumulativeSum(nums) {
+ return nums.map((sum => value => sum += value)(0));
+}
+console.log(cumulativeSum([1, 2, 3, 4])); // Output: [1, 3, 6, 10]
+
+// Check If a String Is a Valid Number
+function isValidNumber(str) {
+ return !isNaN(parseFloat(str)) && isFinite(str);
+}
+console.log(isValidNumber("123")); // Output: true
+console.log(isValidNumber("123.45")); // Output: true
+console.log(isValidNumber("123e-5")); // Output: true
+console.log(isValidNumber("abc123")); // Output: false
+
+// Reverse Words in a Sentence
+function reverseWords(sentence) {
+ return sentence.split(" ").reverse().join(" ");
+}
+console.log(reverseWords("Hello world from JavaScript")); // Output: "JavaScript from world Hello"
+
+// Find All Elements Less Than a Given Value
+function findElementsLessThan(arr, threshold) {
+ return arr.filter(element => element < threshold);
+}
+console.log(findElementsLessThan([1, 2, 3, 4, 5, 6], 4)); // Output: [1, 2, 3]
+
+// Check for Majority Element
+function isMajorityElement(arr, candidate) {
+ let count = arr.reduce((acc, num) => (num === candidate ? ++acc : acc), 0);
+ return count > arr.length / 2;
+}
+console.log(isMajorityElement([3, 3, 4, 2, 4, 4, 2, 4, 4], 4)); // Output: true
+console.log(isMajorityElement([3, 3, 4, 2, 4, 4, 2, 4], 3)); // Output: false
+
+// Generate a Range of Numbers
+function range(start, end) {
+ let rangeArray = [];
+ for (let i = start; i <= end; i++) {
+ rangeArray.push(i);
+ }
+ return rangeArray;
+}
+console.log(range(1, 5)); // Output: [1, 2, 3, 4, 5]
+
+// Remove Characters from String
+function removeCharacters(str, charsToRemove) {
+ let result = str.split('').filter(char => !charsToRemove.includes(char)).join('');
+ return result;
+}
+console.log(removeCharacters("hello world", "lo")); // Output: "he wrd"
+
+// Alternate Split of String
+function alternateSplit(str) {
+ let even = '';
+ let odd = '';
+ for (let i = 0; i < str.length; i++) {
+ if (i % 2 === 0) {
+ even += str[i];
+ } else {
+ odd += str[i];
+ }
+ }
+ return [even, odd];
+}
+console.log(alternateSplit("abcdef")); // Output: ["ace", "bdf"]
+
+// Validate Nested Parentheses
+function validateParentheses(str) {
+ let stack = [];
+ for (let char of str) {
+ if (char === '(') {
+ stack.push(char);
+ } else if (char === ')') {
+ if (stack.length === 0) return false;
+ stack.pop();
+ }
+ }
+ return stack.length === 0;
+}
+console.log(validateParentheses("((()))")); // Output: true
+console.log(validateParentheses("(()")); // Output: false
+
+// Replace Numbers with "Even" or "Odd"
+function replaceNumbersWithEvenOdd(arr) {
+ return arr.map(num => num % 2 === 0 ? "Even" : "Odd");
+}
+console.log(replaceNumbersWithEvenOdd([1, 2, 3, 4, 5])); // Output: ["Odd", "Even", "Odd", "Even", "Odd"]
+
+// Simple Interest Calculator
+function calculateSimpleInterest(principal, rate, time) {
+ return principal * (rate / 100) * time;
+}
+console.log(calculateSimpleInterest(1000, 5, 3)); // Output: 150
+
+// Filter Strings from Array
+function filterStringsFromArray(arr) {
+ return arr.filter(item => typeof item !== "string");
+}
+console.log(filterStringsFromArray([1, "hello", 2, "world", 3])); // Output: [1, 2, 3]
+
+// Count Down Timer
+function countDown(seconds) {
+ let intervalId = setInterval(() => {
+ console.log(seconds);
+ seconds--;
+ if (seconds < 0) {
+ clearInterval(intervalId);
+ console.log("Done!");
+ }
+ }, 1000);
+}
+countDown(5);
+
+// Check for Sorted Array
+function isSorted(arr) {
+ for (let i = 0; i < arr.length - 1; i++) {
+ if (arr[i] > arr[i + 1]) {
+ return false;
+ }
+ }
+ return true;
+}
+console.log(isSorted([1, 2, 3, 4, 5])); // Output: true
+console.log(isSorted([1, 3, 2])); // Output: false
