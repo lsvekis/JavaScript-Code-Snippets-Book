@@ -1,0 +1,145 @@
+// Count Specific Words in a String
+function countWordOccurrences(sentence, word) {
+ const words = sentence.toLowerCase().split(/\s+/);
+ return words.filter(w => w === word.toLowerCase()).length;
+}
+console.log(countWordOccurrences("Hello world, hello", "hello")); // Output: 2
+
+// Capitalize Every Third Character
+function capitalizeEveryThird(str) {
+ return str.split('').map((char, index) => (index + 1) % 3 === 0 ? char.toUpperCase() : char).join('');
+}
+console.log(capitalizeEveryThird("javascript is awesome")); // Output: "jaVascRipt Is awEsomE"
+
+// Array of Multiples
+function arrayOfMultiples(num, length) {
+ let result = [];
+ for (let i = 1; i <= length; i++) {
+ result.push(num * i);
+ }
+ return result;
+}
+console.log(arrayOfMultiples(7, 5)); // Output: [7, 14, 21, 28, 35]
+
+// Check if String is a Prefix of Another
+function isPrefix(str, prefix) {
+ return str.startsWith(prefix);
+}
+console.log(isPrefix("hello world", "hello")); // Output: true
+console.log(isPrefix("hello world", "world")); // Output: false
+
+// Find Missing Number in Array
+function findMissingNumber(arr) {
+ const n = arr.length + 1;
+ const expectedSum = n * (n + 1) / 2;
+ const actualSum = arr.reduce((acc, curr) => acc + curr, 0);
+ return expectedSum - actualSum;
+}
+console.log(findMissingNumber([3, 7, 1, 2, 8, 4, 5])); // Output: 6
+
+// Sum of Positive Numbers Only
+function sumPositiveNumbers(arr) {
+ return arr.reduce((acc, num) => num > 0 ? acc + num : acc, 0);
+}
+console.log(sumPositiveNumbers([-1, 2, 3, -4, 5])); // Output: 10
+
+// Generate a Countdown from n to 1
+function countdown(n) {
+ let result = [];
+ for (let i = n; i > 0; i--) {
+ result.push(i);
+ }
+ return result;
+}
+console.log(countdown(5)); // Output: [5, 4, 3, 2, 1]
+
+// Replace Blanks with Dashes
+function replaceBlanksWithDashes(str) {
+ return str.replace(/\s/g, '-');
+}
+console.log(replaceBlanksWithDashes("Hello World from JavaScript")); // Output: "Hello-World-from-JavaScript"
+
+// Find the Largest Even Number
+function findLargestEvenNumber(arr) {
+ return arr.filter(num => num % 2 === 0).reduce((acc, num) => num > acc ? num : acc, null);
+}
+console.log(findLargestEvenNumber([3, 7, 2, 8, 6, 4])); // Output: 8
+console.log(findLargestEvenNumber([1, 3, 5])); // Output: null
+
+// Determine if String Contains All Unique Characters
+function areAllCharactersUnique(str) {
+ let seenCharacters = new Set();
+ for (let char of str) {
+ if (seenCharacters.has(char)) {
+ return false;
+ }
+ seenCharacters.add(char);
+ }
+ return true;
+}
+console.log(areAllCharactersUnique("abcdef")); // Output: true
+console.log(areAllCharactersUnique("hello")); // Output: false
+
+// Filter Numbers Greater Than a Given Value
+function filterGreaterThan(arr, threshold) {
+ return arr.filter(num => num > threshold);
+}
+console.log(filterGreaterThan([1, 5, 10, 15, 20], 10)); // Output: [15, 20]
+
+// Calculate Total Years from Age Array
+function totalYears(ages) {
+ return ages.reduce((total, age) => total + age, 0);
+}
+console.log(totalYears([10, 20, 30, 40])); // Output: 100
+
+// Determine if Number is in Sorted Array
+function isInSortedArray(arr, num) {
+ let left = 0;
+ let right = arr.length - 1;
+ while (left <= right) {
+ let mid = Math.floor((left + right) / 2);
+ if (arr[mid] === num) {
+ return true;
+ } else if (arr[mid] < num) {
+ left = mid + 1;
+ } else {
+ right = mid - 1;
+ }
+ }
+ return false;
+}
+console.log(isInSortedArray([1, 2, 3, 4, 5, 6], 4)); // Output: true
+console.log(isInSortedArray([1, 2, 3, 4, 5, 6], 7)); // Output: false
+
+// Convert Array of Objects to Object with IDs as Keys
+function convertToObjWithIds(arr) {
+ return arr.reduce((obj, item) => {
+ obj[item.id] = item;
+ return obj;
+ }, {});
+}
+console.log(convertToObjWithIds([{id: 1, name: 'Alice'}, {id: 2, name: 'Bob'}]));
+// Output: { '1': { id: 1, name: 'Alice' }, '2': { id: 2, name: 'Bob' } }
+
+// Check for Palindrome String
+function isPalindrome(str) {
+ const cleaned = str.replace(/\W/g, '').toLowerCase();
+ return cleaned === cleaned.split('').reverse().join('');
+}
+console.log(isPalindrome("A man, a plan, a canal, Panama")); // Output: true
+console.log(isPalindrome("Hello, world!")); // Output: false
+
+// Find Second Largest Number in Array
+function findSecondLargest(nums) {
+ let largest = -Infinity, secondLargest = -Infinity;
+ for (let num of nums) {
+ if (num > largest) {
+ secondLargest = largest;
+ largest = num;
+ } else if (num > secondLargest && num !== largest) {
+ secondLargest = num;
+ }
+ }
+ return secondLargest;
+}
+console.log(findSecondLargest([1, 5, 3, 6, 4])); // Output: 5
