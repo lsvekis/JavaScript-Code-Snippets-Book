@@ -1,0 +1,106 @@
+// Move Zeroes to End
+function moveZeroes(nums) {
+ let index = 0;
+ for (let num of nums) {
+ if (num !== 0) {
+ nums[index++] = num;
+ }
+ }
+ for (let i = index; i < nums.length; i++) {
+ nums[i] = 0;
+ }
+ return nums;
+}
+console.log(moveZeroes([0, 1, 0, 3, 12])); // Output: [1, 3, 12, 0, 0]
+
+// Remove Palindromic Subsequences
+function removePalindromeSub(s) {
+ if (s === s.split('').reverse().join('')) return 1;
+ return 2; // If not a palindrome, remove all characters first, then all characters that are the same.
+}
+console.log(removePalindromeSub("ababa")); // Output: 1
+console.log(removePalindromeSub("abb")); // Output: 2
+
+// Sum of Left Leaves in Binary Tree
+function sumOfLeftLeaves(root, isLeft = false) {
+ if (!root) return 0;
+ if (!root.left && !root.right && isLeft) return root.val;
+ return sumOfLeftLeaves(root.left, true) + sumOfLeftLeaves(root.right, false);
+}
+// Example for testing (binary tree node structure assumed)
+function TreeNode(val, left, right) {
+ this.val = (val === undefined ? 0 : val);
+ this.left = (left === undefined ? null : left);
+ this.right = (right === undefined ? null : right);
+}
+let root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+console.log(sumOfLeftLeaves(root)); // Output depends on tree structure; for this tree, output: 24
+
+// Check if Two Strings Are Almost Equivalent
+function areAlmostEquivalent(s1, s2) {
+ let charCounts1 = {};
+ let charCounts2 = {};
+ for (let char of s1) {
+ charCounts1[char] = (charCounts1[char] || 0) + 1;
+ }
+ for (let char of s2) {
+ charCounts2[char] = (charCounts2[char] || 0) + 1;
+ }
+ let allChars = new Set([...Object.keys(charCounts1), ...Object.keys(charCounts2)]);
+ for (let char of allChars) {
+ if (Math.abs((charCounts1[char] || 0) - (charCounts2[char] || 0)) > 1) {
+ return false;
+ }
+ }
+ return true;
+}
+console.log(areAlmostEquivalent("abc", "bcd")); // Output: false
+console.log(areAlmostEquivalent("aaa", "aab")); // Output: true
+
+// Rotate Matrix Clockwise
+function rotateMatrix(matrix) {
+ let n = matrix.length;
+ for (let layer = 0; layer < Math.floor(n / 2); layer++) {
+ let first = layer;
+ let last = n - 1 - layer;
+ for (let i = first; i < last; i++) {
+ let offset = i - first;
+ let top = matrix[first][i];
+ matrix[first][i] = matrix[last - offset][first];
+ matrix[last - offset][first] = matrix[last][last - offset];
+ matrix[last][last - offset] = matrix[i][last];
+ matrix[i][last] = top;
+ }
+ }
+ return matrix;
+}
+console.log(rotateMatrix([[1, 2], [3, 4]])); // Output: [[3, 1], [4, 2]]
+
+// Sum Root to Leaf Binary Numbers
+function sumRootToLeaf(root, currentNum = 0) {
+ if (!root) return 0;
+ currentNum = currentNum * 2 + root.val;
+ if (!root.left && !root.right) return currentNum; // leaf
+ return sumRootToLeaf(root.left, currentNum) + sumRootToLeaf(root.right, currentNum);
+}
+let binaryTree = new TreeNode(1, new TreeNode(0), new TreeNode(1));
+console.log(sumRootToLeaf(binaryTree)); // Example output: 5
+
+// Continuous Subarray Sum
+function checkSubarraySum(nums, k) {
+ let map = {0: -1};
+ let sum = 0;
+ for (let i = 0; i < nums.length; i++) {
+ sum += nums[i];
+ if (k !== 0) sum %= k;
+ if (map.hasOwnProperty(sum)) {
+ if (i - map[sum] > 1) return true;
+ } else {
+ map[sum] = i;
+ }
+ }
+ return false;
+}
+console.log(checkSubarraySum([23, 2, 4, 6, 7], 6)); // Output: true
+console.log(checkSubarraySum([23, 2, 6, 4, 7], 6)); // Output: true
+
