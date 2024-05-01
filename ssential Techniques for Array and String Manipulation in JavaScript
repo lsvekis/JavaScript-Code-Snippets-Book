@@ -1,0 +1,144 @@
+// Check Array Symmetry
+function isArraySymmetric(arr) {
+ for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+ if (arr[i] !== arr[j]) {
+ return false;
+ }
+ }
+ return true;
+}
+console.log(isArraySymmetric([1, 2, 3, 2, 1])); // Output: true
+console.log(isArraySymmetric([1, 2, 3, 4, 5])); // Output: false
+
+// Sum of Prime Indexed Elements
+function isPrime(num) {
+ if (num < 2) return false;
+ for (let i = 2; i * i <= num; i++) {
+ if (num % i === 0) return false;
+ }
+ return true;
+}
+function sumPrimeIndexedElements(arr) {
+ return arr.reduce((acc, el, index) => isPrime(index) ? acc + el : acc, 0);
+}
+console.log(sumPrimeIndexedElements([10, 11, 12, 13, 14, 15])); // Output: 38 (11 + 13 + 14)
+
+// Reverse an Integer
+function reverseInteger(num) {
+ const reversed = parseInt(num.toString().split('').reverse().join('')) * Math.sign(num);
+ return reversed;
+}
+console.log(reverseInteger(12345)); // Output: 54321
+console.log(reverseInteger(-54321)); // Output: -12345
+
+// Convert Spaces to Underscores
+function convertSpacesToUnderscores(str) {
+ return str.replace(/\s/g, '_');
+}
+console.log(convertSpacesToUnderscores("Hello World from JavaScript")); // Output: "Hello_World_from_JavaScript"
+
+// Find the Smallest Missing Positive Number
+function findSmallestMissingPositive(nums) {
+ const seen = new Set(nums);
+ let smallestMissing = 1;
+ while (seen.has(smallestMissing)) {
+ smallestMissing++;
+ }
+ return smallestMissing;
+}
+console.log(findSmallestMissingPositive([3, 4, -1, 1])); // Output: 2
+console.log(findSmallestMissingPositive([1, 2, 0])); // Output: 3
+
+// Concatenate Strings with Separator
+function concatenateWithSeparator(strings, separator) {
+ return strings.join(separator);
+}
+console.log(concatenateWithSeparator(["Hello", "world", "from", "JavaScript"], " ")); // Output: "Hello world from JavaScript"
+console.log(concatenateWithSeparator(["apple", "banana", "cherry"], "-")); // Output: "apple-banana-cherry"
+
+// Remove First Occurrence
+function removeFirstOccurrence(arr, element) {
+ const index = arr.indexOf(element);
+ if (index !== -1) {
+ arr.splice(index, 1);
+ }
+ return arr;
+}
+console.log(removeFirstOccurrence([3, 5, 3, 1], 3)); // Output: [5, 3, 1]
+
+// Check if All Elements Are the Same
+function allElementsSame(arr) {
+ return arr.every((val) => val === arr[0]);
+}
+console.log(allElementsSame([4, 4, 4, 4])); // Output: true
+console.log(allElementsSame([4, 4, 2, 4])); // Output: false
+
+// Square and Sum
+function squareAndSum(nums) {
+ return nums.reduce((acc, num) => acc + (num * num), 0);
+}
+console.log(squareAndSum([1, 2, 3])); // Output: 14 (1^2 + 2^2 + 3^2)
+
+// Validate Email Address
+function validateEmail(email) {
+ return email.includes('@') && email.includes('.');
+}
+console.log(validateEmail("example@domain.com")); // Output: true
+console.log(validateEmail("exampledomain.com")); // Output: false
+
+// Count the Number of Each Letter in a String
+function countLetters(str) {
+ const counts = {};
+ str.replace(/\s/g, '').toLowerCase().split('').forEach(char => {
+ counts[char] = counts[char] ? counts[char] + 1 : 1;
+ });
+ return counts;
+}
+console.log(countLetters("Hello world")); // Output: {h: 1, e: 1, l: 3, o: 2, w: 1, r: 1, d: 1}
+
+// Find the Index of the First Non-Repeating Character
+function firstUniqueChar(str) {
+ const counts = {};
+ for (let char of str) {
+ counts[char] = counts[char] + 1 || 1;
+ }
+ for (let i = 0; i < str.length; i++) {
+ if (counts[str[i]] === 1) {
+ return i;
+ }
+ }
+ return -1; // Return -1 if no unique character is found
+}
+console.log(firstUniqueChar("leetcode")); // Output: 0
+console.log(firstUniqueChar("aabbcc")); // Output: -1
+
+// Return Array of Cumulative Products
+function cumulativeProduct(nums) {
+ const result = [];
+ nums.reduce((acc, num) => {
+ acc *= num;
+ result.push(acc);
+ return acc;
+ }, 1);
+ return result;
+}
+console.log(cumulativeProduct([1, 2, 3, 4])); // Output: [1, 2, 6, 24]
+
+// Check If Two Strings Are One Edit Apart
+function areOneEditApart(str1, str2) {
+ if (Math.abs(str1.length - str2.length) > 1) return false;
+ let edits = 0;
+ for (let i = 0, j = 0; i < str1.length && j < str2.length; i++, j++) {
+ if (str1[i] !== str2[j]) {
+ if (edits === 1) return false;
+ if (str1.length > str2.length) j--;
+ else if (str1.length < str2.length) i--;
+ edits++;
+ }
+ }
+ return true;
+}
+console.log(areOneEditApart("cat", "cut")); // Output: true
+console.log(areOneEditApart("cat", "cast")); // Output: true
+console.log(areOneEditApart("cat", "at")); // Output: true
+console.log(areOneEditApart("cat", "dog")); // Output: false
