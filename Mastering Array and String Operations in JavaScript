@@ -1,0 +1,158 @@
+///Check if Year is Leap Year
+function isLeapYear(year) {
+ return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+console.log(isLeapYear(2020)); // Output: true
+console.log(isLeapYear(1900)); // Output: false
+///Reverse Each Number in an Array
+function reverseEachNumber(arr) {
+ return arr.map(num => parseInt(num.toString().split('').reverse().join('')));
+}
+console.log(reverseEachNumber([123, 456, 789])); // Output: [321, 654, 987]
+///Calculate the Sum of Even Numbers
+function sumOfEvens(n) {
+ let sum = 0;
+ for (let i = 0; i <= n; i += 2) {
+ sum += i;
+ }
+ return sum;
+}
+console.log(sumOfEvens(10)); // Output: 30 (0+2+4+6+8+10)
+///Convert Array to Object with Counter
+function arrayToObjectWithCounts(arr) {
+ const counts = {};
+ arr.forEach(item => {
+ counts[item] = (counts[item] || 0) + 1;
+ });
+ return counts;
+}
+console.log(arrayToObjectWithCounts(['apple', 'banana', 'apple'])); // Output: { apple: 2, banana: 1 }
+///Check If All Characters Are Unique in a String
+function areAllCharactersUnique(str) {
+ const seen = new Set();
+ for (let char of str) {
+ if (seen.has(char)) {
+ return false;
+ }
+ seen.add(char);
+ }
+ return true;
+}
+console.log(areAllCharactersUnique("abcdef")); // Output: true
+console.log(areAllCharactersUnique("abacdefb")); // Output: false
+///Remove Specific Element from Array
+function removeElement(arr, element) {
+ const result = [];
+ for (let i = 0; i < arr.length; i++) {
+ if (arr[i] !== element) {
+ result.push(arr[i]);
+ }
+ }
+ return result;
+}
+console.log(removeElement([1, 2, 3, 4, 3], 3)); // Output: [1, 2, 4]
+///Determine the Longest String in an Array
+function findLongestString(strings) {
+ return strings.reduce((longest, current) => current.length > longest.length ? current : longest, "");
+}
+console.log(findLongestString(["short", "medium", "longest", "longer"])); // Output: "longest"
+///Generate a Random Hex Color
+function generateRandomHexColor() {
+ return '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+}
+console.log(generateRandomHexColor()); // Output: e.g., "#1a2b3c"
+///Extract Unique Characters from a String
+function extractUniqueChars(str) {
+ const uniqueChars = new Set(str.split(''));
+ return [...uniqueChars].join('');
+}
+console.log(extractUniqueChars("hello world")); // Output: "helo wrd"
+///Count True Values in an Array
+function countTrue(arr) {
+ return arr.filter(Boolean).length;
+}
+console.log(countTrue([true, false, true, false, true])); // Output: 3
+///Alternate Case in a String
+function alternateCase(str) {
+ let result = '';
+ let lower = true;
+ for (let char of str) {
+ if (/[a-z]/i.test(char)) {
+ result += lower ? char.toLowerCase() : char.toUpperCase();
+ lower = !lower;
+ } else {
+ result += char;
+ }
+ }
+ return result;
+}
+console.log(alternateCase("hello world")); // Output: "hElLo wOrLd"
+///Check if a Number is a Perfect Square
+function isPerfectSquare(num) {
+ const squareRoot = Math.sqrt(num);
+ return squareRoot === Math.floor(squareRoot);
+}
+console.log(isPerfectSquare(16)); // Output: true
+console.log(isPerfectSquare(14)); // Output: false
+///Convert String to Title Case
+function toTitleCase(str) {
+ return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+console.log(toTitleCase("hello world")); // Output: "Hello World"
+///Check if Two Arrays Are Equal
+function arraysEqual(arr1, arr2) {
+ if (arr1.length !== arr2.length) return false;
+ for (let i = 0; i < arr1.length; i++) {
+ if (arr1[i] !== arr2[i]) {
+ return false;
+ }
+ }
+ return true;
+}
+console.log(arraysEqual([1, 2, 3], [1, 2, 3])); // Output: true
+console.log(arraysEqual([1, 2, 3], [3, 2, 1])); // Output: false
+///Remove All Occurrences of a Specific Value from an Array
+function removeAllOccurrences(arr, valueToRemove) {
+ return arr.filter(item => item !== valueToRemove);
+}
+console.log(removeAllOccurrences([1, 2, 3, 2, 4], 2)); // Output: [1, 3, 4]
+///Generate an Array of Letters
+function generateAlphabet() {
+ const alphabet = [];
+ for (let i = 0; i < 26; i++) {
+ alphabet.push(String.fromCharCode(97 + i));
+ }
+ return alphabet;
+}
+console.log(generateAlphabet()); // Output: ['a', 'b', 'c', ..., 'z']
+///Sum All Even Numbers in an Array
+function sumEvenNumbers(arr) {
+ return arr.reduce((sum, num) => num % 2 === 0 ? sum + num : sum, 0);
+}
+console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6])); // Output: 12
+///Find Maximum Difference in an Array
+function maxDifference(arr) {
+ let minElement = arr[0];
+ let maxDiff = 0;
+ arr.forEach(num => {
+ if (num < minElement) {
+ minElement = num;
+ }
+ const difference = num - minElement;
+ if (difference > maxDiff) {
+ maxDiff = difference;
+ }
+ });
+ return maxDiff;
+}
+console.log(maxDifference([2, 3, 10, 6, 4])); // Output: 8
+///Convert First Character of Each Word to Uppercase
+function capitalizeFirstLetters(str) {
+ return str.replace(/\b[a-z]/g, char => char.toUpperCase());
+}
+///Count Occurrences of a Substring in a String
+function countOccurrences(str, substring) {
+ const regex = new RegExp(substring, 'g');
+ return (str.match(regex) || []).length;
+}
+
