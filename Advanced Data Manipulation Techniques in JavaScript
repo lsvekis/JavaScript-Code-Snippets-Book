@@ -1,0 +1,201 @@
+///Sort Numbers by the Number of Divisors
+function sortNumbersByDivisors(numbers) {
+ function getDivisorCount(num) {
+ let count = 0;
+ for (let i = 1; i <= num; i++) {
+ if (num % i === 0) {
+ count++;
+ }
+ }
+ return count;
+ }
+ return numbers.sort((a, b) => getDivisorCount(a) - getDivisorCount(b));
+}
+console.log(sortNumbersByDivisors([10, 7, 9, 6])); // Output: [7, 9, 6, 10]
+
+///Replace Every n-th Value in an Array
+function replaceNthValue(arr, n, newValue) {
+ for (let i = n - 1; i < arr.length; i += n) {
+ arr[i] = newValue;
+ }
+ return arr;
+}
+console.log(replaceNthValue([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 'a')); // Output: [1, 2, 'a', 4, 5, 'a', 7, 8, 'a', 10]
+
+///Check for Consecutive Numbers
+function hasThreeConsecutive(arr) {
+ for (let i = 0; i < arr.length - 2; i++) {
+ if (arr[i] + 1 === arr[i + 1] && arr[i] + 2 === arr[i + 2]) {
+ return true;
+ }
+ }
+ return false;
+}
+console.log(hasThreeConsecutive([1, 2, 3, 5, 8])); // Output: true
+console.log(hasThreeConsecutive([1, 2, 4, 5, 7])); // Output: false
+
+///Find Median of Two Sorted Arrays
+function findMedianSortedArrays(nums1, nums2) {
+ const merged = [...nums1, ...nums2].sort((a, b) => a - b);
+ const midIndex = Math.floor(merged.length / 2);
+ if (merged.length % 2 === 0) {
+ return (merged[midIndex - 1] + merged[midIndex]) / 2;
+ } else {
+ return merged[midIndex];
+ }
+}
+console.log(findMedianSortedArrays([1, 3], [2])); // Output: 2
+console.log(findMedianSortedArrays([1, 2], [3, 4])); // Output: 2.5
+
+///Rotate String
+function isRotation(s1, s2) {
+ if (s1.length !== s2.length) {
+ return false;
+ }
+ return (s1 + s1).includes(s2);
+}
+console.log(isRotation("abcde", "deabc")); // Output: true
+console.log(isRotation("abcde", "edcba")); // Output: false
+
+///Convert Numeric Score to Letter Grade
+function scoreToGrade(score) {
+ if (score >= 90) return 'A';
+ else if (score >= 80) return 'B';
+ else if (score >= 70) return 'C';
+ else if (score >= 60) return 'D';
+ else return 'F';
+}
+console.log(scoreToGrade(88)); // Output: 'B'
+console.log(scoreToGrade(52)); // Output: 'F'
+
+///Remove Duplicates from Sorted Array
+function removeDuplicates(nums) {
+ let i = 0;
+ for (let j = 1; j < nums.length; j++) {
+ if (nums[j] !== nums[i]) {
+ i++;
+ nums[i] = nums[j];
+ }
+ }
+ return i + 1; // Return the length of the array with unique elements
+}
+console.log(removeDuplicates([1, 1, 2])); // Output: 2, Array becomes [1, 2]
+
+///Validate Subsequence
+function isValidSubsequence(array, sequence) {
+ let seqIndex = 0;
+ for (let value of array) {
+ if (seqIndex === sequence.length) break;
+ if (sequence[seqIndex] === value) seqIndex++;
+ }
+ return seqIndex === sequence.length;
+}
+console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, 10])); // Output: true
+/// Binary Search
+function binarySearch(arr, target) {
+ let left = 0;
+ let right = arr.length - 1;
+ while (left <= right) {
+ let mid = Math.floor((left + right) / 2);
+ if (arr[mid] === target) {
+ return mid;
+ } else if (arr[mid] < target) {
+ left = mid + 1;
+ } else {
+ right = mid - 1;
+ }
+ }
+ return -1; // If target is not found
+}
+console.log(binarySearch([1, 2, 3, 4, 5], 3)); // Output: 2
+
+///Find All Numbers Disappeared in an Array
+function findDisappearedNumbers(nums) {
+ let n = nums.length;
+ let result = [];
+ let set = new Set(nums); // Use a set for quick lookup
+ for (let i = 1; i <= n; i++) {
+ if (!set.has(i)) {
+ result.push(i);
+ }
+ }
+ return result;
+}
+console.log(findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1])); // Output: [5, 6]
+
+///Calculate the Number of Islands
+function numIslands(grid) {
+ function dfs(row, col) {
+ if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] === '0') {
+ return;
+ }
+ grid[row][col] = '0'; // Mark the visited land
+ dfs(row + 1, col); // Down
+ dfs(row - 1, col); // Up
+ dfs(row, col + 1); // Right
+ dfs(row, col - 1); // Left
+ }
+ let count = 0;
+ for (let i = 0; i < grid.length; i++) {
+ for (let j = 0; j < grid[i].length; j++) {
+ if (grid[i][j] === '1') {
+ dfs(i, j);
+ count++;
+ }
+ }
+ }
+ return count;
+}
+console.log(numIslands([
+ ["1","1","0","0","0"],
+ ["1","1","0","0","0"],
+ ["0","0","1","0","0"],
+ ["0","0","0","1","1"]
+])); // Output: 3
+
+/// Calculate Average of Numbers in Array
+function calculateAverage(nums) {
+ return nums.reduce((acc, curr) => acc + curr, 0) / nums.length;
+}
+console.log(calculateAverage([10, 20, 30, 40, 50])); // Output: 30
+
+///Identify All Prime Numbers Up to n
+function listPrimes(n) {
+ let primes = [];
+ for (let i = 2; i <= n; i++) {
+ let isPrime = true;
+ for (let j = 2; j <= Math.sqrt(i); j++) {
+ if (i % j === 0) {
+ isPrime = false;
+ break;
+ }
+ }
+ if (isPrime) primes.push(i);
+ }
+ return primes;
+}
+console.log(listPrimes(29)); // Output: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+///Return Longest Word in String
+function findLongestWord(str) {
+ let words = str.split(' ');
+ return words.reduce((longest, current) => current.length > longest.length ? current : longest);
+}
+console.log(findLongestWord("The quick brown fox jumped over the lazy dog")); // Output: "jumped"
+
+///Sum of All Odd Fibonacci Numbers
+function sumOddFibonacci(n) {
+ let a = 1, b = 1;
+ let sum = a + b; // Start with first two Fibonacci numbers
+ while (b <= n) {
+ let nextFib = a + b;
+ a = b;
+ b = nextFib;
+ if (b % 2 !== 0 && b <= n) {
+ sum += b;
+ }
+ }
+ return sum;
+}
+console.log(sumOddFibonacci(10)); // Output: 10 (1 + 1 + 3 + 5)
+
