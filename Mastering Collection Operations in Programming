@@ -1,0 +1,145 @@
+// Generate All Subsets of a Set
+function generateSubsets(nums) {
+ const subsets = [];
+ const backtrack = (current, index) => {
+ subsets.push([...current]);
+ for (let i = index; i < nums.length; i++) {
+ current.push(nums[i]);
+ backtrack(current, i + 1);
+ current.pop();
+ }
+ };
+ backtrack([], 0);
+ return subsets;
+}
+console.log(generateSubsets([1, 2, 3]));
+// Output: [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]
+
+// Swap First and Last Elements of an Array
+function swapFirstLast(arr) {
+ if (arr.length > 1) {
+ [arr[0], arr[arr.length - 1]] = [arr[arr.length - 1], arr[0]];
+ }
+ return arr;
+}
+console.log(swapFirstLast([1, 2, 3, 4])); // Output: [4, 2, 3, 1]
+
+// Remove Vowels from String
+function removeVowels(str) {
+ return str.replace(/[aeiou]/gi, '');
+}
+console.log(removeVowels("Hello World")); // Output: "Hll Wrld"
+
+// Convert Number to Reverse Array of Digits
+function reverseArrayDigits(num) {
+ return String(num).split('').map(Number).reverse();
+}
+console.log(reverseArrayDigits(12345)); // Output: [5, 4, 3, 2, 1]
+
+// Return Longest Word in a Sentence
+function findLongestWord(sentence) {
+ let words = sentence.split(' ');
+ return words.reduce((longest, current) => current.length > longest.length ? current : longest);
+}
+console.log(findLongestWord("The quick brown fox jumped over the lazy dog")); // Output: "jumped"
+
+// Count True Values in Array
+function countTrue(arr) {
+ return arr.filter(Boolean).length;
+}
+console.log(countTrue([true, false, false, true, false, true])); // Output: 3
+
+// Add Properties to Object
+function addProperties(obj, props) {
+ for (let key in props) {
+ obj[key] = props[key];
+ }
+ return obj;
+}
+let myObj = { name: "John" };
+console.log(addProperties(myObj, { age: 30, city: "New York" })); // Output: { name: "John", age: 30, city: "New York" }
+
+// Verify if Array Is Sorted
+function isArraySorted(arr) {
+ for (let i = 1; i < arr.length; i++) {
+ if (arr[i] < arr[i - 1]) {
+ return false;
+ }
+ }
+ return true;
+}
+console.log(isArraySorted([1, 2, 3, 4, 5])); // Output: true
+console.log(isArraySorted([1, 3, 2])); // Output: false
+
+// Find All Pairs in Array Whose Sum Is a Specific Value
+function findPairsWithSum(arr, targetSum) {
+ let pairs = [];
+ let seen = new Set();
+ for (let num of arr) {
+ let complement = targetSum - num;
+ if (seen.has(complement)) {
+ pairs.push([complement, num]);
+ }
+ seen.add(num);
+ }
+ return pairs;
+}
+console.log(findPairsWithSum([2, 4, 3, 5, 6, -2], 8)); // Output: [[3, 5], [2, 6]]
+
+// Capitalize Each Word in a String
+function capitalizeWords(str) {
+ return str.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
+}
+console.log(capitalizeWords("hello world")); // Output: "Hello World"
+
+// Check if All Array Elements Are Unique
+function allUnique(arr) {
+ let seen = new Set();
+ for (let item of arr) {
+ if (seen.has(item)) {
+ return false;
+ }
+ seen.add(item);
+ }
+ return true;
+}
+console.log(allUnique([1, 2, 3, 4, 5])); // Output: true
+console.log(allUnique([1, 2, 3, 2, 5])); // Output: false
+
+// Merge Two Sorted Arrays
+function mergeSortedArrays(arr1, arr2) {
+ let merged = [];
+ let i = 0, j = 0;
+ while (i < arr1.length && j < arr2.length) {
+ if (arr1[i] < arr2[j]) {
+ merged.push(arr1[i++]);
+ } else {
+ merged.push(arr2[j++]);
+ }
+ }
+ return merged.concat(arr1.slice(i)).concat(arr2.slice(j));
+}
+console.log(mergeSortedArrays([1, 3, 5], [2, 4, 6])); // Output: [1, 2, 3, 4, 5, 6]
+
+// Count Specific Character in a String
+function countCharacter(str, char) {
+ return str.split('').filter(c => c === char).length;
+}
+console.log(countCharacter("hello world", 'l')); // Output: 3
+
+// Check for Increasing Triplet Subsequence
+function increasingTriplet(arr) {
+ let small = Infinity, mid = Infinity;
+ for (let num of arr) {
+ if (num <= small) {
+ small = num;
+ } else if (num <= mid) {
+ mid = num;
+ } else {
+ return true;
+ }
+ }
+ return false;
+}
+console.log(increasingTriplet([1, 2, 3, 4, 5])); // Output: true
+console.log(increasingTriplet([5, 4, 3, 2, 1])); // Output: false
