@@ -1,0 +1,128 @@
+// Find the Smallest Missing Positive Number
+function findSmallestMissingPositive(nums) {
+ let i = 1;
+ const numSet = new Set(nums);
+ while (numSet.has(i)) {
+ i++;
+ }
+ return i;
+}
+console.log(findSmallestMissingPositive([3, 4, -1, 1])); // Output: 2
+console.log(findSmallestMissingPositive([1, 2, 0])); // Output: 3
+
+// Calculate Sum of Diagonal Elements in Matrix
+function sumDiagonal(matrix) {
+ let sum = 0;
+ for (let i = 0; i < matrix.length; i++) {
+ sum += matrix[i][i];
+ }
+ return sum;
+}
+console.log(sumDiagonal([[1, 2], [3, 4]])); // Output: 5 (1 + 4)
+console.log(sumDiagonal([[1, 0, 0], [0, 5, 0], [0, 0, 9]])); // Output: 15 (1 + 5 + 9)
+
+// Check If All Letters of the Alphabet Are Present
+function isPangram(str) {
+ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+ const lowercaseStr = str.toLowerCase();
+ for (let char of alphabet) {
+ if (!lowercaseStr.includes(char)) {
+ return false;
+ }
+ }
+ return true;
+}
+console.log(isPangram("The quick brown fox jumps over the lazy dog")); // Output: true
+console.log(isPangram("Some random string")); // Output: false
+
+// Count Occurrences of a Substring
+function countSubstring(str, substring) {
+ let count = 0;
+ let pos = str.indexOf(substring);
+ while (pos !== -1) {
+ count++;
+ pos = str.indexOf(substring, pos + 1);
+ }
+ return count;
+}
+console.log(countSubstring("hello hello world", "hello")); // Output: 2
+console.log(countSubstring("ababab", "ab")); // Output: 3
+
+// Calculate ASCII Value Sum of a String
+function asciiValueSum(str) {
+ return str.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+}
+console.log(asciiValueSum("hello")); // Output: 532
+console.log(asciiValueSum("abc")); // Output: 294
+
+// Check If String Rotations
+function areRotations(str1, str2) {
+ return str1.length === str2.length && (str1 + str1).includes(str2);
+}
+console.log(areRotations("abcde", "deabc")); // Output: true
+console.log(areRotations("abcde", "abced")); // Output: false
+
+// // Sort Array by Parity
+function sortArrayByParity(nums) {
+ return nums.sort((a, b) => (a % 2) - (b % 2));
+}
+console.log(sortArrayByParity([3, 1, 2, 4])); // Output: [2, 4, 3, 1]
+
+Sum of Numbers with Even Number of Digits
+function sumEvenDigitNumbers(nums) {
+ return nums.filter(num => num.toString().length % 2 === 0).reduce((sum, num) => sum + num, 0);
+}
+console.log(sumEvenDigitNumbers([12, 345, 2, 6, 7896])); // Output: 7908
+
+// Longest Common Prefix
+function longestCommonPrefix(strs) {
+ if (!strs.length) return "";
+ let prefix = strs[0];
+ for (let i = 1; i < strs.length; i++) {
+ while (strs[i].indexOf(prefix) !== 0) {
+ prefix = prefix.substring(0, prefix.length - 1);
+ if (!prefix) return "";
+ }
+ }
+ return prefix;
+}
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])); // Output: ""
+
+// Find Element Appearing More Than 25% in Sorted Array
+function findSpecialElement(arr) {
+ const threshold = arr.length / 4;
+ for (let i = 0; i < arr.length; i++) {
+ if (arr[i] === arr[i + threshold]) {
+ return arr[i];
+ }
+ }
+ return -1;
+}
+console.log(findSpecialElement([1, 2, 2, 2, 2, 3, 4])); // Output: 2
+
+// Validate Stack Sequences
+function validateStackSequences(pushed, popped) {
+ let stack = [];
+ let popIndex = 0;
+ for (let num of pushed) {
+ stack.push(num);
+ while (stack.length && stack[stack.length - 1] === popped[popIndex]) {
+ stack.pop();
+ popIndex++;
+ }
+ }
+ return stack.length === 0;
+}
+console.log(validateStackSequences([1, 2, 3, 4], [4, 3, 2, 1])); // Output: true
+console.log(validateStackSequences([1, 2, 3, 4], [2, 1, 4, 3])); // Output: false
+
+// Decompress Run-Length Encoded List
+function decompressRLElist(nums) {
+ let decompressed = [];
+ for (let i = 0; i < nums.length; i += 2) {
+ decompressed.push(...Array(nums[i]).fill(nums[i + 1]));
+ }
+ return decompressed;
+}
+console.log(decompressRLElist([1, 2, 3, 4])); // Output: [2, 4, 4, 4]
